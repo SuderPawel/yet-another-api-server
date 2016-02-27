@@ -11,14 +11,12 @@
   <tbody>
   <% @apis.each do |api| %>
       <tr>
-        <td><%= api.title %></td>
+        <td><%= api.name %></td>
         <td>
           <div class="btn-group btn-group-xs" role="group">
             <%= link_to 'Show', api_path(api), class: 'btn btn-default', role: 'button' %>
-            <% if user_signed_in? %>
-                <%= link_to 'Edit', edit_api_path(api), class: 'btn btn-default', role: 'button' %>
-                <%= link_to 'Destroy', api_path(api), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default', role: 'button' %>
-            <% end %>
+            <%= link_to 'Edit', edit_api_path(api), class: 'btn btn-default', role: 'button' %>
+            <%= link_to 'Destroy', api_path(api), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default', role: 'button' %>
           </div>
         </td>
       </tr>

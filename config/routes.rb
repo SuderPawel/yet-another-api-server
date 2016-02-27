@@ -55,4 +55,13 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  namespace :api do
+    get '' => 'mock#index'
+    get ':uuid/' => 'mock#catch_all', defaults: {format: 'json'}
+    post ':uuid/' => 'mock#catch_all', defaults: {format: 'json'}
+    put ':uuid/' => 'mock#catch_all', defaults: {format: 'json'}
+    delete ':uuid/' => 'mock#catch_all', defaults: {format: 'json'}
+    patch ':uuid/' => 'mock#catch_all', defaults: {format: 'json'}
+  end
 end
