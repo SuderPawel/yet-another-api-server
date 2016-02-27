@@ -1,3 +1,5 @@
+<h4>Information about API handler</h4>
+
 <table class="table">
   <thead>
   <tr>
@@ -14,4 +16,39 @@
     <td>UUID</td>
     <td><%= @api.uuid %></td>
   </tr>
+</table>
+
+<h4>Usage</h4>
+
+<div class="alert alert-info" role="alert">
+  <strong>Curl:</strong> example <code>GET</code> usage: <code>curl http://hostname/api/<%= @api.uuid %></code>
+</div>
+
+<h4>Noticed events</h4>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Date</th>
+    <th>Method</th>
+    <th>Body</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @api.events.each do |event| %>
+      <tr>
+        <td>#<%= event.id %></td>
+        <td><%= event.created_at %></td>
+        <td><code><%= event.method %></code></td>
+        <td><code><%= event.body %></code></td>
+        <td>
+          <div class="btn-group btn-group-xs" role="group">
+            <%= link_to 'Show', '/apis/%d/events/%d' % [@api.id, event.id], class: 'btn btn-default', role: 'button' %>
+          </div>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
 </table>

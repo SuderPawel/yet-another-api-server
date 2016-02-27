@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :apis
+  resources :apis do
+    member do
+      get 'events'
+      get 'events/:event_id' => 'apis#event'
+    end
+  end
 
   # Example resource route with options:
   #   resources :products do
