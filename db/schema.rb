@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227082714) do
+ActiveRecord::Schema.define(version: 20160227091131) do
 
   create_table "apis", force: :cascade do |t|
     t.string   "name"
@@ -19,5 +19,7 @@ ActiveRecord::Schema.define(version: 20160227082714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "apis", ["uuid"], name: "index_apis_on_uuid", unique: true
 
 end

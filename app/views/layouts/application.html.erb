@@ -47,7 +47,7 @@
             <li><%= link_to "All APIs", apis_path %></li>
             <li><%= link_to "New API", new_api_path %></li>
             <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Current api actions</li>
+            <li class="dropdown-header">Current API actions</li>
             <% if defined? @api and not @api.new_record? %>
                 <li><%= link_to "Edit", edit_api_path(@api) %></li>
                 <li><%= link_to "Destroy", api_path(@api), method: :delete, data: {confirm: "Are you sure?"} %></li>
