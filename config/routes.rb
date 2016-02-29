@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   resources :apis do
     member do
-      get 'events'
       get 'events/:event_id' => 'apis#event'
     end
   end

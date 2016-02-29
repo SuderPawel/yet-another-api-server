@@ -1,4 +1,6 @@
 class Api::MockController < ApplicationController
+  protect_from_forgery with: :null_session
+
   respond_to :json
 
   def index
@@ -22,26 +24,17 @@ class Api::MockController < ApplicationController
     request.env.map { |key, value| env[key] = value.to_s }
     result[:env] = env
 
-    env.each do |name, value|
-      property = Property.new
-      property.name = name
-      property.source = 'env'
-      property.value = value
-      property.event = event
-      property.save
-    end
-
     headers = {}
     request.headers.each { |key, value| headers[key] = value.to_s }
     result[:headers] = headers
 
-    headers.each do |name, value|
-      property = Property.new
-      property.name = name
-      property.source = 'header'
-      property.value = value
-      property.event = event
-      property.save
+    Property.bulk_insert do |worker|
+      env.each do |name, value|
+        worker.add({name: name, source: 'env', value: value, event_id: event.id})
+      end
+      headers.each do |name, value|
+        worker.add({name: name, source: 'header', value: value, event_id: event.id})
+      end
     end
 
     result[:params] = params
@@ -50,6 +43,6 @@ class Api::MockController < ApplicationController
     else
       result[:api_name] = api.name
     end
-    respond_with result
+    respond_with result, location: apis_url
   end
 end

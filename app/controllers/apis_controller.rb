@@ -43,10 +43,6 @@ class ApisController < ApplicationController
     redirect_to apis_path
   end
 
-  def events
-    @events = Event.where(api_id: params[:id])
-  end
-
   def event
     @event = Event.find(params[:event_id])
   end

@@ -21,7 +21,10 @@
 <h4>Usage</h4>
 
 <div class="alert alert-info" role="alert">
-  <strong>Curl:</strong> example <code>GET</code> usage: <code>curl http://hostname/api/<%= @api.uuid %></code>
+  <p>Example <code>GET</code> usage:
+    <code>curl -X GET http://<%= request.env['HTTP_HOST'] %>/api/<%= @api.uuid %></code></p>
+  <p>Example <code>POST</code> usage:
+    <code>curl -X POST -d "body" http://<%= request.env['HTTP_HOST'] %>/api/<%= @api.uuid %></code></p>
 </div>
 
 <h4>Noticed events</h4>
@@ -32,6 +35,7 @@
     <th>Id</th>
     <th>Date</th>
     <th>Method</th>
+    <th>Params</th>
     <th>Body</th>
     <th>Actions</th>
   </tr>
@@ -42,7 +46,8 @@
         <td>#<%= event.id %></td>
         <td><%= event.created_at %></td>
         <td><code><%= event.method %></code></td>
-        <td><code><%= event.body %></code></td>
+        <td><pre><%= event.params %></pre></td>
+        <td><pre><%= event.body %></pre></td>
         <td>
           <div class="btn-group btn-group-xs" role="group">
             <%= link_to 'Show', '/apis/%d/events/%d' % [@api.id, event.id], class: 'btn btn-default', role: 'button' %>

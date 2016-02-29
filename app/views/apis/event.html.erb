@@ -12,18 +12,18 @@
   <tr>
     <td>Method</td>
     <td><code>static</code></td>
-    <td><code><%= @event.method %></code></td>
+    <td><pre><%= @event.method %></pre></td>
   </tr>
   <tr>
     <td>Body</td>
     <td><code>static</code></td>
-    <td><code><%= @event.body %></code></td>
+    <td><pre><%= @event.body %></pre></td>
   </tr>
   <% @event.properties.each do |property| %>
       <tr>
         <td><%= property.name %></td>
         <td><code><%= property.source %></code></td>
-        <td class="value"><code><%= property.value %></code></td>
+        <td><pre><%= property.value %></pre></td>
       </tr>
   <% end %>
   </tbody>
