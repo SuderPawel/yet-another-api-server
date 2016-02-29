@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'sentry-raven'
+
 gem 'responders', '~> 2.0'
 
 gem 'bulk_insert'
@@ -30,7 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
