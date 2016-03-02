@@ -8,6 +8,7 @@ class Api::MockController < ApplicationController
 
   def catch_all
     api = Api.where(uuid: params[:uuid]).first
+    api.touch
 
     event = Event.new
 

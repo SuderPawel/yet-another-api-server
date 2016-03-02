@@ -16,6 +16,10 @@
     <td>UUID</td>
     <td><%= @api.uuid %></td>
   </tr>
+  <tr>
+    <td>Last update</td>
+    <td><%= @api.updated_at %></td>
+  </tr>
 </table>
 
 <h4>Usage</h4>
@@ -46,8 +50,12 @@
         <td>#<%= event.id %></td>
         <td><%= event.created_at %></td>
         <td><code><%= event.method %></code></td>
-        <td><pre><%= event.params %></pre></td>
-        <td><pre><%= event.body %></pre></td>
+        <td>
+          <pre><%= event.params %></pre>
+        </td>
+        <td>
+          <pre><%= event.body %></pre>
+        </td>
         <td>
           <div class="btn-group btn-group-xs" role="group">
             <%= link_to 'Show', '/apis/%d/events/%d' % [@api.id, event.id], class: 'btn btn-default', role: 'button' %>

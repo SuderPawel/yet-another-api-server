@@ -1,0 +1,46 @@
+upstream app_yet-another-api-server {
+    # Path to Unicorn SOCK file, as defined previously
+    server unix:/home/deploy/yet-another-api-server/shared/sockets/unicorn.sock fail_timeout=0;
+}
+
+server {
+    listen 80;
+    server_name yet-another-api-server.not-yet-published-in.net;
+
+    root /home/deploy/yet-another-api-server/public;
+
+    try_files $uri/index.html $uri @app_yet-another-api-server;
+
+    location @app_yet-another-api-server {
+        proxy_pass http://app_yet-another-api-server;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+    }
+
+    error_page 500 502 503 504 /500.html;
+    keepalive_timeout 10;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name yet-another-api-server.not-yet-published-in.net;
+
+    ssl_certificate /etc/nginx/not-yet-published-in.net.crt;
+    ssl_certificate_key /etc/nginx/not-yet-published-in.net.key;
+
+    root /home/deploy/yet-another-api-server/public;
+
+    try_files $uri/index.html $uri @app_yet-another-api-server;
+
+    location @app_yet-another-api-server {
+        proxy_pass http://app_yet-another-api-server;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+    }
+
+    error_page 500 502 503 504 /500.html;
+    keepalive_timeout 10;
+}

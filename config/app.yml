@@ -1,0 +1,12 @@
+#Please keep app.yml.example up to date
+
+defaults: &defaults
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
