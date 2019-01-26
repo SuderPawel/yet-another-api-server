@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+    - db
+    ports:
+    - "3000:3000"
