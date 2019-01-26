@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,36 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227112433) do
+ActiveRecord::Schema.define(version: 2016_02_27_112433) do
 
   create_table "apis", force: :cascade do |t|
-    t.string   "name"
-    t.string   "uuid"
+    t.string "name"
+    t.string "uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["uuid"], name: "index_apis_on_uuid", unique: true
   end
-
-  add_index "apis", ["uuid"], name: "index_apis_on_uuid", unique: true
 
   create_table "events", force: :cascade do |t|
-    t.integer  "api_id"
-    t.string   "method"
+    t.integer "api_id"
+    t.string "method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "body"
+    t.string "body"
+    t.index ["api_id"], name: "index_events_on_api_id"
   end
-
-  add_index "events", ["api_id"], name: "index_events_on_api_id"
 
   create_table "properties", force: :cascade do |t|
-    t.string   "name"
-    t.string   "source"
-    t.string   "value"
-    t.integer  "event_id"
+    t.string "name"
+    t.string "source"
+    t.string "value"
+    t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_properties_on_event_id"
   end
-
-  add_index "properties", ["event_id"], name: "index_properties_on_event_id"
 
 end
