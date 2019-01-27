@@ -25,8 +25,8 @@ class Api < ActiveRecord::Base
 
   def destroy_events
     self.events.each do |event|
-      Property.delete_all('event_id = %d' % event.id)
+      event.destroy_properties
     end
-    Event.delete_all('api_id = %d' % self.id)
+    Event.where(api_id: self.id).delete_all()
   end
 end
