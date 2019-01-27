@@ -29,6 +29,10 @@ module YetAnotherApiServer
     # Custom configuration
     config.app = Rails.application.config_for(:app)
 
+    Raven.configure do |config|
+      config.dsn = ENV['SENTRY_DSN']
+    end
+
     # For Raven Sentry
     config.filter_parameters << :password
   end
