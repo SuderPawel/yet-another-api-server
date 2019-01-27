@@ -20,6 +20,6 @@ class Event < ActiveRecord::Base
   end
 
   def destroy_properties
-    Property.delete_all(['event_id = ?', self.id])
+    Property.where(event_id: self.id).delete_all()
   end
 end
