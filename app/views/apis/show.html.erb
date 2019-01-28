@@ -26,9 +26,9 @@
 
 <div class="alert alert-info" role="alert">
   <p>Example <code>GET</code> usage:
-    <code>curl -X GET http://<%= request.env['HTTP_HOST'] %>/api/<%= @api.uuid %></code></p>
+    <code>curl -X GET <%= request.protocol %><%= request.env['HTTP_HOST'] %>/api/<%= @api.uuid %></code></p>
   <p>Example <code>POST</code> usage:
-    <code>curl -X POST -d "body" http://<%= request.env['HTTP_HOST'] %>/api/<%= @api.uuid %></code></p>
+    <code>curl -X POST -d "body" <%= request.protocol %><%= request.env['HTTP_HOST'] %>/api/<%= @api.uuid %></code></p>
 </div>
 
 <h4>Noticed events</h4>
